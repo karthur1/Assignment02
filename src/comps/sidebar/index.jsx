@@ -1,13 +1,21 @@
-import Image from "next/image";
 import styles from '../../styles/Sidebar.module.css'
+import { useEffect, useState } from 'react'
 
-export default function Sidebar() {
+export default function Sidebar({
+    setItem
+}) {
 
     const genders = ['Male', 'Female', 'Unisex']
     const types = ['Hoodies', 'Jackets', 'Headgear']
-    const liItems = types.map((type, i) => {
-        return <li key={i}>{type}</li>
-    })
+
+    const handleClick = (gender, type) => {
+        setItem({
+            gender : gender,
+            item : type
+        })
+    }
+
+
 
   return (
     <>
@@ -17,12 +25,25 @@ export default function Sidebar() {
         {
             genders.map((gender, i) => {
                 return (
-                    <>
-                        <h3>{gender}</h3>
+                    <div key={i}
+                        
+                    >
+                        <h3
+                            onClick={() => handleClick(gender)}
+                        >{gender}</h3>
                         <ul className={styles.list}>
-                            {liItems}
+                            {
+                                types.map((type, i) => {
+                                    return(
+                                        <li 
+                                            key={i}
+                                            onClick={() => handleClick(gender, type)}
+                                        >{type}</li>
+                                    )
+                                })
+                            }
                         </ul>
-                    </>
+                    </div>
                 )
             })
         }

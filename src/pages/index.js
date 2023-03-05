@@ -2,48 +2,128 @@ import Head from 'next/head'
 import Sidebar from '@/comps/sidebar'
 import styles from '../styles/Home.module.css'
 import Cards from '@/comps/cards'
+import { useState, useEffect } from 'react'
 
 export default function Home() {
 
+  const [item, setItem] = useState()
+
+
   const items = [
     {
-      type : 'male',
-      hoodies : [
+      gender : 'Male',
+      items : {
+        hoodies : [
+          {
+            name: 'Aerospace',
+            path: '/products/hoodies/hood_aerospace_black.png',
+            price: '59.99'
+          },
+          {
+            name: 'Foresty',
+            path: '/products/hoodies/hoodie_forestry_green.png',
+            price: '59.99'
+          },
+        ],
+        jackets : [
+          {
+            name: 'Waterproof Jacket',
+            path: '/products/jackets/waterproof_jacket_black.lng',
+            price: '79.99'
+          }
+        ],
+        headgear : [
+          {
+            name: '',
+            path: '',
+            price: ''
+          }
+        ]
 
-      ],
-      jackets : [
-
-      ],
-      headgear : [
-
-      ],
+      }
     },
     {
-      type : 'female',
-      hoodies : [
-
-      ],
-      jackets : [
-
-      ],
-      headgear : [
-
-      ],
+      gender : 'Female',
+      items : {
+        hoodies : [
+          {
+            name: 'Russel Athletic Hood',
+            path: '/products/hoodies/russell_athletic_hoodie_black.png',
+            price: '69.99'
+          },
+          {
+            name: 'Classic Avalon Fleece Hoodie',
+            path: '/products/hoodies/classic_avalon_fleece_hoodie_black.png',
+            price: '57.99'
+          }
+        ],
+        jackets : [
+          {
+            name: 'Soft Shell Hooded Jacket',
+            path: '/products/jackets/soft_shell_hooded_jacket_black.png',
+            price: '82.99'
+          }
+          
+        ],
+        headgear : [
+          {
+            name: '',
+            path: '',
+            price: ''
+          }
+        ]
+      }
     },
     {
-      type : 'unisex',
-      hoodies : [
-
-      ],
-      jackets : [
-
-      ],
-      headgear : [
-
-      ],
+      gender : 'Unisex',
+      items: {
+        hoodies : [
+          {
+            name: 'Champion Full-Zip Hoodie',
+            path: '/products/hoodies/champion_full_zip_hoodie_black.png',
+            price: '79.99'
+          }
+        ],
+        jackets : [
+          {
+            name: '',
+            path: '',
+            price: ''
+          }
+        ],
+        headgear : [
+          {
+            name: 'Legacy Adjustable Hat',
+            path: '/products/headgear/legacy_adjustable_hat_navy.png',
+            price: '29.99'
+          },
+          {
+            name: 'Legacy Hat Trucker',
+            path: '/products/headgear/legacy_hat_trucket_black_orange.png',
+            price: '36.99'
+          },
+          {
+            name: 'Legacy Toque',
+            path: '/products/headgear/legacy_toque_black.png',
+            price: '34.99'
+          }
+        ]
+      }
     },
   ]
 
+  const selected = () => {
+    if (item) {
+      const filtered = items.filter(i => i.gender == item.gender)
+      return filtered
+    }
+    return items
+  }
+
+  useEffect(() => {
+    // console.log(item)
+    // console.log(selected())
+  }, [item])
 
   return (
     <>
@@ -54,8 +134,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Sidebar />
-        <Cards />
+        <Sidebar setItem={setItem} />
+        <Cards selected={selected} />
       </main>
     </>
   )

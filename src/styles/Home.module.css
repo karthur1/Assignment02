@@ -1,6 +1,6 @@
 .main {
   display: grid;
-  grid-template-columns: 25% 2fr;
+  grid-template-columns: 15% 2fr;
   grid-template-rows: 1fr;
   flex-wrap: wrap;
   height: 100vh;

@@ -7,5 +7,5 @@
 
 .list {
   list-style-type: none;
-  text-align: right;
+  margin: 0 0 0 2rem;
 }
