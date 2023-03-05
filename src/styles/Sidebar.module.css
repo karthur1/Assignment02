@@ -1,0 +1,11 @@
+.listCont {
+  background-color: red;
+  padding: 4rem;
+  width: 100%;
+
+}
+
+.list {
+  list-style-type: none;
+  text-align: right;
+}
