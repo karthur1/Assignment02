@@ -3,3 +3,16 @@
   width: 100%;
   background-color: blue;
 }
+
+.card {
+  background-color: aquamarine;
+  width: 12rem;
+  height: 12rem;
+}
+
+.cardGrid {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}

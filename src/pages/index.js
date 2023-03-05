@@ -13,7 +13,7 @@ export default function Home() {
     {
       gender : 'Male',
       items : {
-        hoodies : [
+        Hoodies : [
           {
             name: 'Aerospace',
             path: '/products/hoodies/hood_aerospace_black.png',
@@ -25,30 +25,22 @@ export default function Home() {
             price: '59.99'
           },
         ],
-        jackets : [
+        Jackets : [
           {
             name: 'Waterproof Jacket',
-            path: '/products/jackets/waterproof_jacket_black.lng',
+            path: '/products/jackets/waterproof_jacket_black.png',
             price: '79.99'
           }
         ],
-        headgear : [
-          {
-            name: '',
-            path: '',
-            price: ''
-          }
-        ]
-
       }
     },
     {
       gender : 'Female',
       items : {
-        hoodies : [
+        Hoodies : [
           {
             name: 'Russel Athletic Hood',
-            path: '/products/hoodies/russell_athletic_hoodie_black.png',
+            path: '/products/hoodies/russell_athletic_hood_black.png',
             price: '69.99'
           },
           {
@@ -57,7 +49,7 @@ export default function Home() {
             price: '57.99'
           }
         ],
-        jackets : [
+        Jackets : [
           {
             name: 'Soft Shell Hooded Jacket',
             path: '/products/jackets/soft_shell_hooded_jacket_black.png',
@@ -65,33 +57,19 @@ export default function Home() {
           }
           
         ],
-        headgear : [
-          {
-            name: '',
-            path: '',
-            price: ''
-          }
-        ]
       }
     },
     {
       gender : 'Unisex',
       items: {
-        hoodies : [
+        Hoodies : [
           {
             name: 'Champion Full-Zip Hoodie',
             path: '/products/hoodies/champion_full_zip_hoodie_black.png',
             price: '79.99'
           }
         ],
-        jackets : [
-          {
-            name: '',
-            path: '',
-            price: ''
-          }
-        ],
-        headgear : [
+        Headgear : [
           {
             name: 'Legacy Adjustable Hat',
             path: '/products/headgear/legacy_adjustable_hat_navy.png',
@@ -99,7 +77,7 @@ export default function Home() {
           },
           {
             name: 'Legacy Hat Trucker',
-            path: '/products/headgear/legacy_hat_trucket_black_orange.png',
+            path: '/products/headgear/legacy_hat_trucker_black_orange.png',
             price: '36.99'
           },
           {
@@ -115,14 +93,26 @@ export default function Home() {
   const selected = () => {
     if (item) {
       const filtered = items.filter(i => i.gender == item.gender)
-      return filtered
+      const filteredItems = filtered.map((o, i) => {
+        return o.items
+      })
+      if (item.item) {
+       const newFilter = filtered.map((o, i) => {
+        return {
+          [item.item] : o.items[item.item]
+        }
+       })
+       console.log(newFilter, 'newfilter')
+       return newFilter
+      }
+      console.log(filteredItems, 'all')
+      return filteredItems
     }
-    return items
+    return 
   }
 
   useEffect(() => {
-    // console.log(item)
-    // console.log(selected())
+    console.log(item)
   }, [item])
 
   return (

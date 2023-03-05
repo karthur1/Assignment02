@@ -1,4 +1,5 @@
 import styles from '../../styles/Cards.module.css'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 export default function Cards({
@@ -9,7 +10,7 @@ export default function Cards({
 
   useEffect(() => {
     setItems(selected)
-    console.log(items, 'from cards')
+    // console.log(items, 'from cards')
   }, [selected])
 
   return (
@@ -18,43 +19,49 @@ export default function Cards({
         <div>
           {
             items && 
-            items.map((item) => {
+            items.map((item, i) => {
               return (
-                <div>
-                    <h1>{item.gender}</h1>
-                    {
-                      item.items.hoodies && 
-                      item.items.hoodies.map((hoodie, i) => {
-                        return (
-                        <>
-                          <h1>{hoodie.name}</h1>
-                        </>
+                <div key={i}>
+                    <p>{item.gender}</p>
+                    <div className={styles.cardGrid}>
+                      {
+                        item.Hoodies && 
+                        item.Hoodies.map((hoodie, i) => {
+                          return (
+                          <div className={styles.card}>
+                            <p key={i}>{hoodie.name}</p>
+                            <Image src={hoodie.path} width={150} height={150}/>
+                          </div>
 
-                        )
-                      })
-                    }
-                    {
-                      item.items.jackets && 
-                      item.items.jackets.map((jacket, i) => {
-                        return (
-                        <>
-                          <h1>{jacket.name}</h1>
-                        </>
+                          )
+                        })
+                      }
+                      {
+                        item.Jackets && 
+                        item.Jackets.map((jacket, i) => {
+                          return (
+                          <div className={styles.card}>
+                            <p key={i}>{jacket.name}</p>
+                            <Image src={jacket.path} width={150} height={150}/>
+                          </div>
 
-                        )
-                      })
-                    }
-                    {
-                      item.items.headgears && 
-                      item.items.headgears.map((headgear, i) => {
-                        return (
-                        <>
-                          <h1>{headgear.name}</h1>
-                        </>
+                          )
+                        })
+                      }
+                      {
+                        item.Headgear && 
+                        item.Headgear.map((headgear, i) => {
+                          return (
+                          <div className={styles.card}>
+                            <p key={i}>{headgear.name}</p>
+                            <Image src={headgear.path} width={150} height={150}/>
+                          </div>
 
-                        )
-                      })
-                    }
+                          )
+                        })
+                      }
+
+                    </div>
                 </div>
               )
             })
